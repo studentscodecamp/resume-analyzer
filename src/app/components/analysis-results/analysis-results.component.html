@@ -1,0 +1,50 @@
+<mat-card *ngIf="result" class="analysis-results-card">
+  <mat-card-header>
+    <mat-card-title>
+      <mat-icon class="analysis-icon">insights</mat-icon> Resume Analysis Results
+    </mat-card-title>
+    <mat-card-subtitle>A detailed breakdown of the match between resume and job description.</mat-card-subtitle>
+  </mat-card-header>
+
+  <mat-card-content>
+    <div class="match-score-section">
+      <div class="score-display">
+        <span class="score-value">{{ result.matchScore | percent:'1.0-0' }}</span>
+        <span class="score-label">Match Score</span>
+      </div>
+      <mat-progress-bar mode="determinate" [value]="result.matchScore * 100" class="score-progress-bar"></mat-progress-bar>
+      <p class="score-tip">Higher score indicates a better fit for the job.</p>
+    </div>
+
+    <mat-divider></mat-divider>
+
+    <div class="analysis-section">
+      <h3><mat-icon color="primary">thumb_up</mat-icon> Strengths</h3>
+      <p class="analysis-text">{{ result.strengths || 'No specific strengths identified.' }}</p>
+    </div>
+
+    <div class="analysis-section">
+      <h3><mat-icon color="warn">thumb_down</mat-icon> Areas for Improvement</h3>
+      <p class="analysis-text">{{ result.weaknesses || 'No specific areas for improvement identified.' }}</p>
+    </div>
+
+    <div class="analysis-section">
+      <h3><mat-icon color="accent">lightbulb</mat-icon> Recommendations</h3>
+      <p class="analysis-text">{{ result.recommendations || 'No specific recommendations provided.' }}</p>
+    </div>
+
+    <mat-divider></mat-divider>
+
+    <div class="comparison-section">
+      <div class="content-panel resume-panel">
+        <h3><mat-icon>article</mat-icon> Resume Highlights</h3>
+        <div class="content-scrollable" [innerHTML]="highlightedResumeContent"></div> <!-- Corrected property name -->
+      </div>
+
+      <div class="content-panel job-panel">
+        <h3><mat-icon>work</mat-icon> Job Description Highlights</h3>
+        <div class="content-scrollable" [innerHTML]="highlightedJobDescriptionContent"></div>
+      </div>
+    </div>
+  </mat-card-content>
+</mat-card>

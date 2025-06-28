@@ -1,0 +1,219 @@
+
+.analysis-results-card {
+  max-width: 900px;
+  margin: 32px auto;
+  padding: 24px;
+  border-radius: 16px;
+  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.1);
+  background-color: #fcfcfc;
+  font-family: 'Inter', sans-serif;
+}
+
+.analysis-results-card mat-card-header {
+  padding-bottom: 20px;
+  border-bottom: 1px solid #eee;
+  margin-bottom: 20px;
+}
+
+.analysis-results-card mat-card-title {
+  font-size: 2.2em;
+  font-weight: 700;
+  color: #333;
+  display: flex;
+  align-items: center;
+}
+
+.analysis-icon {
+  margin-right: 10px;
+  font-size: 1.2em;
+  color: #007bff; /* Primary brand color */
+}
+
+.analysis-results-card mat-card-subtitle {
+  color: #666;
+  font-size: 1em;
+}
+
+.match-score-section {
+  text-align: center;
+  margin-bottom: 30px;
+  background-color: #e8f0fe;
+  padding: 20px;
+  border-radius: 12px;
+}
+
+.score-display {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  margin-bottom: 15px;
+}
+
+.score-value {
+  font-size: 4em;
+  font-weight: 800;
+  color: #007bff; /* Primary brand color */
+  line-height: 1;
+  text-shadow: 2px 2px 5px rgba(0, 123, 255, 0.2);
+}
+
+.score-label {
+  font-size: 1.2em;
+  color: #555;
+  margin-top: 5px;
+  font-weight: 600;
+}
+
+.score-progress-bar {
+  height: 12px !important;
+  border-radius: 6px;
+  overflow: hidden;
+  margin: 10px auto;
+  max-width: 80%;
+}
+
+.mat-progress-bar-fill::after {
+  background-color: #007bff !important; /* Match primary color */
+}
+
+.score-tip {
+  font-size: 0.9em;
+  color: #777;
+  margin-top: 10px;
+}
+
+.analysis-section {
+  margin-top: 30px;
+  padding: 15px 0;
+}
+
+.analysis-section h3 {
+  font-size: 1.8em;
+  color: #333;
+  margin-bottom: 10px;
+  display: flex;
+  align-items: center;
+  font-weight: 700;
+}
+
+.analysis-section h3 mat-icon {
+  margin-right: 10px;
+  font-size: 1.1em;
+}
+
+.analysis-text {
+  line-height: 1.7;
+  color: #444;
+  font-size: 1.05em;
+  background-color: #f9f9f9;
+  border-left: 5px solid #007bff; /* A subtle accent line */
+  padding: 15px 20px;
+  border-radius: 8px;
+  box-shadow: inset 0 1px 3px rgba(0, 0, 0, 0.05);
+}
+
+mat-divider {
+  margin: 30px 0;
+  border-top-color: #e0e0e0;
+}
+
+.comparison-section {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 24px;
+  margin-top: 30px;
+}
+
+.content-panel {
+  flex: 1;
+  min-width: 300px;
+  border: 1px solid #e0e0e0;
+  border-radius: 12px;
+  padding: 20px;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.05);
+  background-color: #ffffff;
+  display: flex;
+  flex-direction: column;
+}
+
+.content-panel h3 {
+  font-size: 1.6em;
+  color: #333;
+  margin-bottom: 15px;
+  display: flex;
+  align-items: center;
+  font-weight: 700;
+}
+
+.content-panel h3 mat-icon {
+  margin-right: 10px;
+  font-size: 1em;
+}
+
+.content-scrollable {
+  max-height: 400px; /* Fixed height for scrollable content */
+  overflow-y: auto;
+  border: 1px solid #f0f0f0;
+  padding: 15px;
+  border-radius: 8px;
+  line-height: 1.6;
+  background-color: #fcfcfc;
+}
+
+/* Highlight style defined in global styles or here if specific to this component */
+::ng-deep .highlight {
+  background-color: #ffd700; /* Gold/yellow for highlights */
+  padding: 2px 4px;
+  border-radius: 4px;
+  font-weight: 600;
+  box-shadow: 0 0 5px rgba(255, 215, 0, 0.5);
+}
+
+/* Scrollbar styling for better aesthetics */
+.content-scrollable::-webkit-scrollbar {
+  width: 8px;
+}
+
+.content-scrollable::-webkit-scrollbar-track {
+  background: #f1f1f1;
+  border-radius: 10px;
+}
+
+.content-scrollable::-webkit-scrollbar-thumb {
+  background: #888;
+  border-radius: 10px;
+}
+
+.content-scrollable::-webkit-scrollbar-thumb:hover {
+  background: #555;
+}
+
+/* Responsive adjustments */
+@media (max-width: 768px) {
+  .analysis-results-card {
+    margin: 20px;
+    padding: 15px;
+  }
+
+  .analysis-results-card mat-card-title {
+    font-size: 1.8em;
+  }
+
+  .score-value {
+    font-size: 3em;
+  }
+
+  .analysis-section h3 {
+    font-size: 1.5em;
+  }
+
+  .comparison-section {
+    flex-direction: column;
+  }
+
+  .content-panel {
+    min-width: unset;
+    width: 100%;
+  }
+}

@@ -1,0 +1,58 @@
+<mat-card class="upload-card">
+  <mat-card-header>
+    <mat-card-title><mat-icon>cloud_upload</mat-icon> Upload Your Resume</mat-card-title>
+    <mat-card-subtitle>Supported formats: PDF, DOC, DOCX (Max 5MB)</mat-card-subtitle>
+  </mat-card-header>
+
+  <mat-card-content>
+    <div class="upload-area" [class.file-selected]="selectedFile">
+      <input
+        type="file"
+        id="resumeUpload"
+        (change)="onFileSelected($event)"
+        [accept]="allowedFileTypes.join(',')"
+        hidden
+      >
+
+      <label for="resumeUpload" class="file-input-label">
+        <mat-icon *ngIf="!selectedFile">cloud_upload</mat-icon>
+        <span *ngIf="!selectedFile" class="select-text">Select or Drag & Drop a file</span>
+        <span *ngIf="selectedFile" class="file-name-display">{{ fileName }}</span>
+        <button mat-mini-fab color="warn" *ngIf="selectedFile" (click)="resetUpload()" matTooltip="Remove file">
+          <mat-icon>close</mat-icon>
+        </button>
+      </label>
+    </div>
+
+    <mat-progress-bar
+      *ngIf="isUploading"
+      mode="determinate"
+      [value]="uploadProgress"
+      class="upload-progress-bar"
+    ></mat-progress-bar>
+
+    <div *ngIf="uploadComplete" class="upload-status upload-success-message">
+      <mat-icon>check_circle</mat-icon>
+      <h3>Upload Successful!</h3>
+    </div>
+
+    <div *ngIf="uploadFailed" class="upload-status upload-error-message">
+      <mat-icon>error</mat-icon>
+      <h3>Upload Failed.</h3>
+      <p>Please try again or check your file.</p>
+    </div>
+  </mat-card-content>
+
+  <mat-card-actions>
+    <button
+      mat-raised-button
+      color="primary"
+      (click)="uploadResume()"
+      [disabled]="!selectedFile || isUploading || uploadComplete"
+      class="upload-button"
+    >
+      <mat-icon>upload</mat-icon>
+      {{ isUploading ? 'Uploading...' : 'Upload Resume' }}
+    </button>
+  </mat-card-actions>
+</mat-card>

@@ -1,0 +1,197 @@
+
+html, body {
+  height: 100%;
+  margin: 0;
+  font-family: 'Inter', sans-serif;
+  background-color: #f5f7f9;
+  color: #333;
+}
+
+.app-container {
+  display: flex;
+  flex-direction: column;
+  min-height: 100vh;
+}
+
+.app-toolbar {
+  background: linear-gradient(90deg, #007bff 0%, #0056b3 100%);
+  color: white;
+  padding: 0 24px;
+}
+
+.app-title {
+  font-weight: 700;
+  font-size: 1.5em;
+  margin-right: 20px;
+}
+
+.toolbar-spacer {
+  flex: 1 1 auto;
+}
+
+.toolbar-link {
+  color: white;
+  margin: 0 8px;
+  font-weight: 500;
+  border-radius: 8px;
+  transition: background-color 0.3s ease, color 0.3s ease;
+}
+
+.toolbar-link mat-icon {
+  margin-right: 8px;
+}
+
+.toolbar-link:hover, .toolbar-link.active-link {
+  background-color: rgba(255, 255, 255, 0.2);
+}
+
+.app-sidenav-container {
+  flex: 1;
+  background-color: #f0f2f5;
+}
+
+.app-sidenav {
+  width: 250px;
+  background-color: #ffffff;
+  box-shadow: 2px 0 10px rgba(0, 0, 0, 0.1);
+}
+
+.app-sidenav mat-nav-list {
+  padding-top: 20px;
+}
+
+.app-sidenav mat-list-item {
+  color: #555;
+  font-weight: 500;
+  border-radius: 8px;
+  margin: 8px 16px;
+  padding: 10px 16px;
+  transition: background-color 0.2s ease, color 0.2s ease;
+}
+
+.app-sidenav mat-list-item mat-icon {
+  margin-right: 12px;
+  color: #777;
+}
+
+.app-sidenav mat-list-item:hover, .app-sidenav mat-list-item.active-nav-item {
+  background-color: #e0f2f7;
+  color: #007bff;
+}
+
+.app-sidenav mat-list-item.active-nav-item mat-icon {
+  color: #007bff;
+}
+
+.app-sidenav-content {
+  display: flex;
+  flex-direction: column;
+  min-height: calc(100vh - 64px);
+}
+
+.main-content {
+  flex: 1;
+  padding: 20px;
+  box-sizing: border-box;
+}
+
+.global-loading-bar {
+  position: fixed;
+  top: 64px;
+  left: 0;
+  right: 0;
+  z-index: 999;
+}
+.global-loading-bar .mat-progress-bar-fill::after {
+  background-color: #ffd700 !important;
+}
+
+.analysis-view {
+  padding-top: 20px;
+}
+
+.back-to-jobs-btn {
+  margin-bottom: 20px;
+  border-radius: 20px;
+  padding: 8px 20px;
+  font-weight: 600;
+}
+
+.app-footer {
+  background-color: #333;
+  color: white;
+  text-align: center;
+  padding: 20px;
+  font-size: 0.9em;
+  border-top: 5px solid #007bff;
+  box-shadow: 0 -5px 15px rgba(0, 0, 0, 0.1);
+}
+
+.error-snackbar {
+  background-color: #dc3545 !important;
+  color: white !important;
+  border-radius: 8px;
+  font-weight: 600;
+}
+
+.success-snackbar {
+  background-color: #28a745 !important;
+  color: white !important;
+  border-radius: 8px;
+  font-weight: 600;
+}
+
+.warn-snackbar {
+  background-color: #ffc107 !important;
+  color: #333 !important;
+  border-radius: 8px;
+  font-weight: 600;
+}
+
+button.mat-raised-button, button.mat-stroked-button {
+  border-radius: 8px;
+  font-weight: 600;
+  text-transform: none;
+}
+
+::ng-deep .highlight {
+  background-color: #ffd700;
+  padding: 2px 4px;
+  border-radius: 4px;
+  font-weight: 600;
+  box-shadow: 0 0 5px rgba(255, 215, 0, 0.5);
+}
+
+@media (max-width: 768px) {
+  .app-toolbar {
+    padding: 0 10px;
+  }
+
+  .app-title {
+    font-size: 1.2em;
+    margin-right: 10px;
+  }
+
+  .toolbar-link {
+    display: none;
+  }
+
+  .menu-icon {
+    display: block;
+  }
+
+  .main-content {
+    padding: 10px;
+  }
+
+  .back-to-jobs-btn {
+    width: 100%;
+    margin-bottom: 15px;
+  }
+}
+
+@media (min-width: 769px) {
+  .menu-icon {
+    display: none;
+  }
+}

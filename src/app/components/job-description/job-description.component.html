@@ -1,0 +1,92 @@
+<mat-card class="job-description-card">
+  <mat-card-header>
+    <mat-card-title><mat-icon>work</mat-icon> Select a Job Description</mat-card-title>
+    <mat-card-subtitle>Choose an existing job or add a new one to analyze your resume against.</mat-card-subtitle>
+  </mat-card-header>
+
+  <mat-card-content>
+    <div class="job-list-header">
+      <h2>Available Jobs</h2>
+      <button mat-raised-button color="accent" (click)="toggleForm()" class="toggle-form-btn">
+        <mat-icon>{{ showForm ? 'close' : 'add' }}</mat-icon>
+        {{ showForm ? 'Cancel Add Job' : 'Add New Job' }}
+      </button>
+    </div>
+
+    <mat-divider></mat-divider>
+
+    <div *ngIf="showForm" class="job-form-container mat-elevation-z2">
+      <mat-card-header>
+        <mat-card-title>Create New Job Description</mat-card-title>
+      </mat-card-header>
+      <mat-card-content>
+        <form (ngSubmit)="createJob()" class="new-job-form">
+          <mat-form-field appearance="outline" class="full-width">
+            <mat-label>Job Title</mat-label>
+            <input matInput [(ngModel)]="newJob.title" name="title" required>
+          </mat-form-field>
+
+          <mat-form-field appearance="outline" class="full-width">
+            <mat-label>Description</mat-label>
+            <textarea matInput [(ngModel)]="newJob.description" name="description" rows="5" required></textarea>
+          </mat-form-field>
+
+          <mat-form-field appearance="outline" class="full-width">
+            <mat-label>Required Skills (comma separated)</mat-label>
+            <input matInput [(ngModel)]="newJob.requiredSkills" name="requiredSkills" required>
+          </mat-form-field>
+
+          <mat-form-field appearance="outline" class="full-width">
+            <mat-label>Preferred Skills (comma separated)</mat-label>
+            <input matInput [(ngModel)]="newJob.preferredSkills" name="preferredSkills">
+          </mat-form-field>
+
+          <mat-form-field appearance="outline" class="full-width">
+            <mat-label>Experience Level</mat-label>
+            <mat-select [(ngModel)]="newJob.experienceLevel" name="experienceLevel" required>
+              <mat-option *ngFor="let level of experienceLevels" [value]="level">
+                {{ level }}
+              </mat-option>
+            </mat-select>
+          </mat-form-field>
+
+          <div class="form-actions">
+            <button mat-raised-button color="primary" type="submit">
+              <mat-icon>save</mat-icon> Save Job
+            </button>
+            <button mat-button type="button" (click)="toggleForm()">
+              <mat-icon>cancel</mat-icon> Cancel
+            </button>
+          </div>
+        </form>
+      </mat-card-content>
+    </div>
+
+    <div *ngIf="jobs.length === 0 && !showForm" class="no-jobs-message">
+      <p>No job descriptions found. Click "Add New Job" to create one.</p>
+    </div>
+
+  <div class="job-list-container">
+    <mat-card *ngFor="let job of jobs" class="job-item-card mat-elevation-z2">
+      <mat-card-header>
+        <mat-card-title>{{ job.title }}</mat-card-title>
+        <mat-card-subtitle>{{ job.experienceLevel }}</mat-card-subtitle>
+      </mat-card-header>
+      <mat-card-content>
+        <p class="job-description-preview">{{ job.description | slice:0:150 }}...</p>
+        <p><strong>Required Skills:</strong> {{ job.requiredSkills || 'N/A' }}</p>
+        <p *ngIf="job.preferredSkills"><strong>Preferred Skills:</strong> {{ job.preferredSkills }}</p>
+      </mat-card-content>
+      <mat-card-actions class="job-actions">
+        <button mat-raised-button color="primary" (click)="onAnalyzeJob(job.id)" [disabled]="!currentResumeId">
+          <mat-icon>analytics</mat-icon> Analyze Resume
+        </button>
+        <button mat-icon-button (click)="editJob(job)" color="accent" matTooltip="Edit Job">
+          <mat-icon>edit</mat-icon>
+        </button>
+        <button mat-icon-button (click)="deleteJob(job.id)" color="warn" matTooltip="Delete Job">
+          <mat-icon>delete</mat-icon>
+        </button>
+      </mat-card-actions>
+    </mat-card>
+  </div>

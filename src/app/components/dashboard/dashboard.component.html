@@ -1,0 +1,70 @@
+
+<div class="dashboard-container">
+  <mat-card class="dashboard-hero-card">
+    <mat-card-content>
+      <div class="hero-content">
+        <h2>Welcome to the AI-Powered Resume Analyzer!</h2>
+        <p>Effortlessly match your resume with job descriptions and get instant, intelligent feedback.</p>
+        <button mat-raised-button color="primary" [routerLink]="'/upload'">
+          <mat-icon>cloud_upload</mat-icon> Upload Resume Now
+        </button>
+      </div>
+    </mat-card-content>
+  </mat-card>
+
+  <section class="quick-actions-section">
+    <h2><mat-icon>flash_on</mat-icon> Quick Actions</h2>
+    <div class="actions-grid">
+      <mat-card *ngFor="let action of quickActions" [routerLink]="action.route" class="action-card mat-elevation-z4">
+        <mat-card-header>
+          <mat-icon mat-card-avatar class="action-icon">{{action.icon}}</mat-icon>
+          <mat-card-title>{{action.title}}</mat-card-title>
+        </mat-card-header>
+        <mat-card-content>
+          <p>{{action.description}}</p>
+        </mat-card-content>
+        <mat-card-actions>
+          <button mat-button color="primary">Go <mat-icon>arrow_forward</mat-icon></button>
+        </mat-card-actions>
+      </mat-card>
+    </div>
+  </section>
+
+  <mat-divider></mat-divider>
+
+  <section class="recent-analyses-section">
+    <h2><mat-icon>history</mat-icon> Recent Analyses</h2>
+    <div *ngIf="recentAnalyses.length === 0" class="no-results-message">
+      <p>No recent analyses found. Upload a resume and analyze it against a job description to see results here!</p>
+      <button mat-stroked-button color="accent" [routerLink]="'/upload'">
+        Start New Analysis
+      </button>
+    </div>
+
+    <div class="analysis-list">
+      <mat-card *ngFor="let analysis of recentAnalyses" class="analysis-item-card mat-elevation-z2">
+        <mat-card-header>
+          <mat-card-title>{{analysis.jobTitle}}</mat-card-title>
+          <mat-card-subtitle *ngIf="analysis.company">{{analysis.company}}</mat-card-subtitle>
+          <mat-card-subtitle *ngIf="!analysis.company">Company: N/A</mat-card-subtitle>
+        </mat-card-header>
+        <mat-card-content>
+          <div class="analysis-metrics">
+            <div class="match-score">
+              <span>Match Score:</span>
+              <span class="score-value" [ngClass]="{'high-score': analysis.matchScore >= 0.75, 'medium-score': analysis.matchScore >= 0.50 && analysis.matchScore < 0.75, 'low-score': analysis.matchScore < 0.50}">
+                {{analysis.matchScore | percent:'1.0-0'}}
+              </span>
+            </div>
+            <div class="analysis-date">
+              <mat-icon class="date-icon">calendar_today</mat-icon> {{analysis.date | date:'mediumDate'}}
+            </div>
+          </div>
+        </mat-card-content>
+        <mat-card-actions>
+          <button mat-button color="primary" (click)="viewAnalysisDetails(analysis.id)">View Details</button>
+        </mat-card-actions>
+      </mat-card>
+    </div>
+  </section>
+</div>
